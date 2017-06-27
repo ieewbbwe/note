@@ -1,0 +1,12 @@
+1.协议 tcp/ip
+2.webservice 安全
+3.AICD 什么时候出现脏读 幻读
+4.soa协议
+5.springmvc工作原理
+6.分布式事物
+7.restful 原则
+8.tomcat调优
+9.oracle树查询
+10.autowaire是否可以byParam annatation是否可以byName
+
+

@@ -1,0 +1,20 @@
+Testing Support Library 测试支持库
+AndroidJUnitRunner  单远测试
+Espresso  UI测试框架，是给一个app的UI测试 ===========》白盒测试
+UI Automator ，UI测试框架 ，适用于 跨系统 和 安装的应用程序 的跨应用程序功能的用户界面测试。  =======》黑盒测试（界面测试）
+
+3)Test filtering 测试过滤
+@RequiresDevice:指定设备只能够在物理设备上运行，不能够在模拟器上运行。
+@SdkSupress:使能够在低于给定的adk的水平上运行。 可以使用注释@SDKSupress(minSdkVersion=18).
+
+Espresso  UI测试
+
+3、UI Automator UI自动化
+
+issue:import org.junit.Test; 导入报错
+
+gradlew createDebugCoverageReport jacoco 生成测试报告
+
+no test found
+
+AndroidJUnit4 数据库测试 不会写入应用的数据库 AndroidTestCase 测试会写入数据库

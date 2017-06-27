@@ -1,0 +1,32 @@
+1 利用Android分包之后合成一个DEX包的特性，1.dex 与2.dex 中存在不同则会优先选择elements list靠前的dex包中的class
+
+2 热修复思路，1 生成一个补丁包DEX 2 将补丁包与原有的apk合并，覆盖掉修改的方法
+
+3 dex 被打包在apk中，应用启动时，会通过classLoader去加载dex到BaseDexClassLoader的DexPathList的 Element数组。
+
+4 thinker 做法 比较两个apk
+
+5 补丁包patch的生成 java -jar tinker-patch-cli-1.7.7.jar -old old.apk -new new.apk -config tinker_config.xml -out output
+
+
+
+补充：
+1 CLASS_ISPREVERIFILE 标签打上之后就不会再去合并dex中的类
+方案：当dex中的类有对其他dex中类的引用的时候就不会被标记为CLASS_ISPREVERIFILE，因此在每个class的构造里面引用一个类
+
+2 classLoader 方法了解
+
+3 studio中右侧的Gradle用法
+
+
+编译期产物
+
+安卓App热补丁动态修复技术介绍 初始文章
+
+https://mp.weixin.qq.com/s?__biz=MzI1MTA1MzM2Nw==&mid=400118620&idx=1&sn=b4fdd5055731290eef12ad0d17f39d4a&scene=1&srcid=1106Imu9ZgwybID13e7y2nEi#wechat_redirect
+
+借鉴文章
+http://www.tuicool.com/articles/367RBvY
+
+实现文章
+http://blog.csdn.net/lmj623565791/article/details/54882693
