@@ -233,4 +233,3 @@ Android{
 "第x条记录"那里是一个listView，可以加载更多。最后那个弹窗是我用ajax请求到的数据，弹出来的。
 Android端：
 
-Web：
