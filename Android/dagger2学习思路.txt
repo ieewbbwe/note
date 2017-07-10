@@ -1,0 +1,15 @@
+解耦 使用注解编译时生成代码，少些代码
+
+在目标类中用@Inject 标注变量等待被注入实例
+
+在实体类中@Module标注为产生实例
+
+通过component将二者联合起来。怎么联合的？
+Component管理了Module类中用@Provides标注的实例，同事管理了@Inject标注的待注入项，component会去匹配 匹配规则是什么？类名
+
+如果类的多个构造方法被@Jnject标注 如何选择？
+Qualifier 限定符给标记
+
+为什么不能使用一个Component？
+
+module维度？inject维度？
