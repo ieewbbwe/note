@@ -18,3 +18,5 @@ gradlew createDebugCoverageReport jacoco 生成测试报告
 no test found
 
 AndroidJUnit4 数据库测试 不会写入应用的数据库 AndroidTestCase 测试会写入数据库
+
+robotium 测试
