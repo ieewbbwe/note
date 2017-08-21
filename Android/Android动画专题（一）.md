@@ -517,5 +517,10 @@ private final Choreographer.FrameCallback mFrameCallback = new Choreographer.Fra
 
 因此我们的需求可以满足，也可以看出来其实pause之后动画任务还是在消耗资源
 
+#### 2.2.2 ValueAnimtor实现动画
+
+经过上面的分析也不难看出
+
+
 ### 2.3 Layout Anim
 ### 2.4 插值器（interpolator）
