@@ -10,7 +10,7 @@
 2. 外包项目的客户交流方式
 3. 协同开发的任务分配
 4. 项目出现问题，此时开发人员不够，后期暂时又没有别的项目，招人？
-5. 让别人干活干的爽
+5. 如何让别人干活干的爽
 ##2 实战技术
 ###2.1 窗口控件悬浮
 ###2.2 CardView在4.4以下的一些问题 shadownPadding
@@ -44,7 +44,7 @@ java.lang.NoSuchMethodError: android.support.v7.widget.CardView.setShadowPadding
 
 ####2.3.2 布局切换
 
-现在有很多成熟的库可以使用了，我目前用的是飘舟的[LRecycleView](https://github.com/jdsjlzx/LRecyclerView)
+现在有很多成熟的库可以使用了，我目前用的是飘舟的[LRecycleView](https://github.com/jdsjlzx/LRecyclerView)当时是自己用RecycleView的LayoutManagement自己写的，也出现了挺多问题，比如切换时候的布局错乱，切换后的头尾布局修改这些的
 
 ###2.4 Android Marital Design——theme
 Android 5.0之后，UI上有了比较大的改变，主要的几点：

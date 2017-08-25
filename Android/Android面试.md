@@ -1,3 +1,6 @@
+#概述
+之前公司招Android开发的一些问题
+
 ###1. Android四大组件是什么？及各自的生命周期？
 四大组件：Activity，Service，BrodcastReceiver，ContentProvider
 
