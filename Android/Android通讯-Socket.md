@@ -90,6 +90,173 @@ Sock并不是一个协议，它是一种抽象层，应用程序通过它来发�
 
 ### Socket的使用
 
+简单的理解Socket就是一个通道，C端可以发送数据给S端，反过来也成立。Http只能是C端去主动调S端的接口。因此我们来写个例子看下
+
+例1：基于Socket的聊天室
+需求：A发送消息，B可以看到，A、B可以相互沟通
+思路：
+Android端
+1. 打开界面初始化Socket通道，监听来自服务端的数据
+2. 点击按钮将EditText中的信息发送给服务器
+
+Service端
+1. 打开ServiceSocket等待客户端来的消息，为每一个客户端创建Socket，并维护在数组中
+2. 接收客户端来的数据，并把数据发送给当前所有用户
+3. 若出现异常则回收该客户端
+
+编码：
+<b>客户端</b>
+
+```
+public class SocketActivity extends AppCompatActivity {
+
+    @Bind(R.id.m_message_et)
+    EditText mMessageEt;
+    @Bind(R.id.m_send_bt)
+    Button mSendBt;
+    @Bind(R.id.m_test_tv)
+    TextView mTestTv;
+    private String HOST = "10.27.0.197";
+    private int PORT = 1993;
+    private Socket mSocket;
+    private ClientThread mClientThread;
+
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    mTestTv.setText(mTestTv.getText() + "\n" + msg.obj);
+                    break;
+            }
+            return false;
+        }
+    });
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_socket);
+        ButterKnife.bind(this);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                init();
+            }
+        }).start();
+    }
+
+    private void init() {
+        try {
+            mSocket = new Socket(HOST, PORT);
+
+            new Thread(new ReadHandlerThread()).start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mSendBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    mSocket.getOutputStream().write((mMessageEt.getText().toString() + "\r\n").getBytes("utf-8"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+ private class ReadHandlerThread implements Runnable {
+
+        @Override
+        public void run() {
+            String content;
+            try {
+                // 接收Socket发来的数据，只要有客户端向服务器发送了数据，服务器就负责把它传递给所有客户端
+                BufferedReader mBufferReader = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
+                while ((content = mBufferReader.readLine()) != null) {
+                    handler.obtainMessage(1, content).sendToTarget();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+}
+```
+
+<b>服务端</b>
+
+```
+public class SocketMainMethod {
+
+    private static ArrayList<Socket> clients = new ArrayList<>();
+
+    public static void main(String[] args) throws IOException {
+        //1 初始化ServiceSocket
+        ServerSocket mServerSocket = new ServerSocket(1993);
+        while (true) {
+            Socket socket = mServerSocket.accept();
+            new ChatThread(socket).start();
+            clients.add(socket);
+            System.out.println(socket.getRemoteSocketAddress() + "接入，当前队列" + clients.size());
+        }
+    }
+
+    static class ChatThread extends Thread {
+
+        private Socket client;
+        private BufferedReader bufferedReader;
+
+        ChatThread(Socket socket) {
+            this.client = socket;
+            try {
+                bufferedReader = new BufferedReader(new InputStreamReader(client.getInputStream()
+                        , "utf-8"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            String content;
+            try {
+                //获取客户端传递来的信息
+                while ((content = bufferedReader.readLine()) != null) {
+                    //将该信息分发给每一个客户端
+                    for (Iterator<Socket> it = clients.iterator();
+                         it.hasNext(); ) {
+                        Socket s = it.next();
+                        try {
+                            s.getOutputStream().write((content + "\n").getBytes("utf-8"));
+                            System.out.println("向客户端写数据：" + content);
+                        } catch (SocketException e) {
+                            e.printStackTrace();
+                            //出现异常则移除该client
+                            clients.remove(s);
+                        }
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+此部分参考了 [android socket聊天室——也不仅仅是聊天室](http://blog.csdn.net/double2hao/article/details/53259967)
+
 ## WebSocket
+WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。
+
+<i>全双工：可以简单的理解是C,S端都可以进行数据发送和接收</i>
+
+别的不多说，先看怎么用的。
 
 
