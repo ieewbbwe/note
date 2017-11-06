@@ -1,0 +1,2 @@
+(fields.E304) Reverse accessor for 'Product.param_id' clashes with reverse accessor for 'Product.type'.
+	HINT: Add or change a related_name argument to the definition for 'Product.param_id' or 'Product.type'.
