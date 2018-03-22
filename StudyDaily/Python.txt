@@ -1,0 +1,23 @@
+2018.01.02
+VI 命令
+VIM 进入VI编辑器
+i,a,o 进入插入模式
+p 黏贴
+dd 删除
+10D 删除10行
+x逐个删除
+u 撤销
+ctrl+r 返撤销
+G 定位到最后
+gg 定位到顶部
+ctrl+f 上翻一页
+ctrl+b 下翻一页
+
+r-->4 可读
+w-->2 可写
+x-->1 可执行
+
+u 自己 g同组 o其他人
+chmod u=rwx g=rwx o=rwx 2.py
+chmod u=r,g=r,o=r 2.py
+chmod 777 2.py

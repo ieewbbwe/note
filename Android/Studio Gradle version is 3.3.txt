@@ -1,0 +1,2 @@
+Error(1, 0) Minimum supported Gradle version is 3.3. Current version is 2.14.1. If using the gradle wrapper, try editing the distributionUrl in DasWorkgitWorkSpaceomoomo_sdk_v2_androidgradlewrappergradle-wrapper.properties to gradle-3.3-all.zip
+a href=openFileDasWorkgitWorkSpaceomoomo_sdk_v2_androidappbuild.gradleOpen Filea
