@@ -6,8 +6,10 @@
 <br/>下载地址：[https://atom.io/](https://atom.io/)
 <br><b>WebStorm. JetBrains 全家桶，自动下载库很方便</b>
 <br/>下载地址：[https://www.jetbrains.com/webstorm/](https://www.jetbrains.com/webstorm/)
+<br><b>vscode</b>
+<br>下载地址：[https://visualstudio.microsoft.com/zh-hans/downloads/](https://visualstudio.microsoft.com/zh-hans/downloads/)
 
-我用的是WebStorm，因为我做Android开发的用的Android Studio和这个IDE有很多相似的地方，上手快啊，而且自动下载一些包也挺方便的。(收费自己找激活码或者服务器吧很简单)
+我用的是WebStorm，因为我做Android开发的用的Android Studio和这个IDE有很多相似的地方，上手快啊，而且自动下载一些包也挺方便的。(收费自己找激活码或者服务器吧很简单),也推荐Vscode，使用起来也很方便，而且免费。
 
 其他的自行了解：[十大最受欢迎的 React Native 应用开发编辑器](https://blog.csdn.net/csdnnews/article/details/78042121)
 
@@ -43,7 +45,23 @@ https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopl
 
 ###2.2 将原生代码移植到ReactNative
 
-###2.3 一些Android相关操作
+###2.3 一些基本操作
+####2.3.1 项目创建及目录
+使用VsCode示例,他自带的好像没有创建工程的地方，需要自己手动初始化项目。</br>
+
+```react-native init myFirstDemo```
+
+使用VsCode打开文件夹，【文件】-【打开文件夹】<br>
+vsCode详细的快捷键可以看这篇文章：
+[VS Code编辑器快捷键使用](https://blog.csdn.net/zxy9602/article/details/78836307)
+
+####2.3.2 代码编写
+
+####2.3.3 项目运行
+Android下的项目运行：
+
+
+####2.3.4 编译打包
 
 <b>应用签名打包</b>
 
